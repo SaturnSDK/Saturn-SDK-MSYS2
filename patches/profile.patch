@@ -1,0 +1,19 @@
+--- etc/profile	2015-04-26 11:32:54.000000000 +0100
++++ etc/profile.new	2015-08-03 21:59:15.265687100 +0100
+@@ -25,6 +25,7 @@
+ MANPATH="/usr/local/man:/usr/share/man:/usr/man:/share/man:${MANPATH}"
+ INFOPATH="/usr/local/info:/usr/share/info:/usr/info:/share/info:${INFOPATH}"
+ MINGW_MOUNT_POINT=
++TOOLCHAIN_PATH=$(/usr/bin/cygpath -u "$SATURN_ROOT\toolchain\bin" 2> /dev/null)
+ if [ -n "$MSYSTEM" ]
+ then
+   case "$MSYSTEM" in
+@@ -43,7 +44,7 @@
+       MANPATH="${MINGW_MOUNT_POINT}/share/man:${MANPATH}"
+     ;;
+     MSYS)
+-      PATH="${MSYS2_PATH}:/opt/bin:${PATH}"
++      PATH="${MSYS2_PATH}:/opt/bin:${TOOLCHAIN_PATH}:${PATH}"
+       PKG_CONFIG_PATH="/usr/lib/pkgconfig:/usr/share/pkgconfig:/lib/pkgconfig"
+     ;;
+     *)

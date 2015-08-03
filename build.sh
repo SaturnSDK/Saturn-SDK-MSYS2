@@ -34,6 +34,13 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+./patch.sh
+
+if [ $? -ne 0 ]; then
+	echo "Failed to patch MSYS2"
+	exit 1
+fi
+
 if [[ "${CREATEINSTALLER}" == "YES" ]]; then
 	./createinstaller.sh
 fi
