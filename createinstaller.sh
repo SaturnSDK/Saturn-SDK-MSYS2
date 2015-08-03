@@ -38,10 +38,25 @@ cat > $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/met
 	<Version>${MAJOR_BUILD_NUM}.${MINOR_BUILD_NUM}.${REVISION_BUILD_NUM}.${BUILD_NUM}</Version>
 	<Name>org.opengamedevelopers.sega.saturn.sdk.msys2</Name>
 	<ReleaseDate>`git log --pretty=format:"%ci" -1 | sed -e 's/ [^ ]*$//g'`</ReleaseDate>
+	<Script>installscript.qs</Script>
 	<Licenses>
 		<License name="GNU Public License Ver. 3" file="gplv3.txt" />
 	</Licenses>
 </Package>
+__EOF__
+
+cat > $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/meta/installscript.qs << __EOF__
+function Component( )
+{
+}
+
+Component.prototype.createOperations = function( )
+{
+	component.createOperations( );
+
+	component.addOperation( "CreateShortcut", "@TargetDir@/msys2/msys2_shell.bat",
+		"@StartMenuDir@/MSYS2 Shell.lnk", "iconPath=@TargetDir@/msys2/msys2.ico" );
+}
 __EOF__
 
 wget -c -O $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/meta/gplv3.txt https://www.gnu.org/licenses/gpl-3.0.txt
