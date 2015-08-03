@@ -12,8 +12,8 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-rm -rf ${INSTALLDIR}/msys
+rm -rf ${INSTALLDIR}/msys2
 
-mv ${EXTRACTDIR} ${INSTALLDIR}/msys
+mv ${EXTRACTDIR} ${INSTALLDIR}/msys2
 
 echo "Done"

@@ -46,8 +46,8 @@ __EOF__
 
 wget -c -O $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/meta/gplv3.txt https://www.gnu.org/licenses/gpl-3.0.txt
 
-printf "Packaging $INSTALLDIR ... "
-$QTIFWDIR/bin/archivegen $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/data/directory.7z $INSTALLDIR
+printf "Packaging $INSTALLDIR/msys2 ... "
+$QTIFWDIR/bin/archivegen $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/data/directory.7z $INSTALLDIR/msys2
 if [ $? -ne "0" ]; then
 	printf "FAILED\n"
 	exit 1
