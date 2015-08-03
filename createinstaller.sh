@@ -48,6 +48,7 @@ __EOF__
 cat > $ROOTDIR/installerpackage/org.opengamedevelopers.sega.saturn.sdk.msys2/meta/installscript.qs << __EOF__
 function Component( )
 {
+	installer.finishButtonClicked.connect( this, Component.prototype.installationFinished );
 }
 
 Component.prototype.createOperations = function( )
@@ -56,6 +57,14 @@ Component.prototype.createOperations = function( )
 
 	component.addOperation( "CreateShortcut", "@TargetDir@/msys2/msys2_shell.bat",
 		"@StartMenuDir@/MSYS2 Shell.lnk", "iconPath=@TargetDir@/msys2/msys2.ico" );
+}
+
+Component.prototype.installationFinished = function( )
+{
+	if( installer.fileExists( installer.value( "TargetDir" ) + "/msys2/etc/hosts" ) == false )
+	{
+		QDesktopServices.openUrl( "file:///" + installer.value( "TargetDir" ) + "/msys2/msys2_shell.bat" );
+	}
 }
 __EOF__
 
