@@ -1,0 +1,24 @@
+--- msys2_shell.bat	2015-11-07 17:11:37.105158400 +0000
++++ msys2_shell.bat.new	2015-11-07 17:13:53.060652800 +0000
+@@ -35,17 +35,17 @@
+ if "x%MSYSCON%" == "xconsole.exe" goto startconsolez
+ 
+ :startmintty
+-if NOT EXIST %WD%mintty.exe goto startsh
+-start %WD%mintty -i /msys2.ico /usr/bin/bash --login %*
++if NOT EXIST "%WD%mintty.exe" goto startsh
++start "" "%WD%mintty" -i /msys2.ico /usr/bin/bash --login %*
+ exit
+ 
+ :startconsolez
+-cd %WD%..\lib\ConsoleZ
++cd "%WD%..\lib\ConsoleZ"
+ start console -t "MSys2" -r "%*"
+ exit
+ 
+ :startsh
+-start %WD%sh --login -i %*
++start "" "%WD%sh" --login -i %*
+ exit
+ 
+ :EOF
